@@ -1,3 +1,6 @@
+using GraphQL;
+using WebApp.Api;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddGraphQL(b => b
+        .AddAutoSchema<RootQuery>()
+        .AddSystemTextJson());
 
 var app = builder.Build();
 
@@ -17,9 +24,15 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.MapControllers();
+app.UseRouting();
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGraphQL("/graphql");
+});
 
 app.Run();
+
+public partial class Program { }
