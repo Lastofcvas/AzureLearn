@@ -30,7 +30,7 @@ namespace WebApp.Test
             var requestContent = GetRequestContent(query);
             var response = await GetResponse<ParentJsonModel<HelloJsonModel>>(_httpClient, requestContent);
 
-            const string expected = "Hello, world!";
+            const string expected = "GreetAsync, world!";
 
             Assert.Equal(expected, response.Json.Data.Hello);
         }

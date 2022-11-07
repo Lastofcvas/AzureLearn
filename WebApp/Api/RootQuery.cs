@@ -5,6 +5,6 @@ namespace WebApp.Api
 {
     public class RootQuery
     {
-        public static async Task<string> Hello([FromServices] HelloRepository helloRepository) => await helloRepository.GreetAsync();
+        public static async Task<string> GreetAsync([FromServices] HelloRepository helloRepository) => await helloRepository.GreetAsync();
     }
 }
