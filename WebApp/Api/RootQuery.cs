@@ -1,7 +1,10 @@
-﻿namespace WebApp.Api
+﻿using GraphQL;
+using WebApp.Repositories;
+
+namespace WebApp.Api
 {
     public class RootQuery
     {
-        public static string Hello() => "Hello, world!";
+        public static async Task<string> Hello([FromServices] HelloRepository helloRepository) => await helloRepository.GreetAsync();
     }
 }
