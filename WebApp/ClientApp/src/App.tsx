@@ -12,21 +12,27 @@ const App = (): JSX.Element => {
       hello
     }`;
   
-
   const setResponse = async (): Promise<void> => {
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        query: query
-      })
-    });
+    setLoading(true);
 
-    const json = await response.json();
-
-    setHello(json.data.hello);
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          query: query
+        })
+      });
+  
+      const json = await response.json();
+      
+      setHello(json.data.hello);
+    }
+    finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {

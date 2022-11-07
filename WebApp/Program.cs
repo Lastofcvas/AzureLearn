@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-const string POLICY = "Application policy";
+const string POLICY = "CorsSpecificOrigins";
 
 builder.Services.AddCors(o => o.AddPolicy(POLICY, builder =>
 {
@@ -21,7 +21,8 @@ builder.Services.AddSingleton<HelloRepository>();
 
 builder.Services.AddGraphQL(b => b
         .AddAutoSchema<RootQuery>()
-        .AddSystemTextJson());
+        .AddSystemTextJson()
+        .AddErrorInfoProvider(e => e.ExposeExceptionDetails = true));
 
 var app = builder.Build();
 
@@ -31,7 +32,7 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseCors(POLICY);
 app.UseAuthorization();
-app.UseGraphQLAltair();
+app.UseGraphQLAltair("/");
 
 app.UseEndpoints(endpoints =>
 {

@@ -10,7 +10,7 @@ namespace WebApp.Repositories
         public HelloRepository(IConfiguration configuration)
         {
             var tableServiceClient = new TableServiceClient(configuration.GetConnectionString("AzureStorage"));
-            _tableClient = tableServiceClient.GetTableClient("GreetAsync");
+            _tableClient = tableServiceClient.GetTableClient("Hello");
         }
 
         public async Task<string> GreetAsync()
