@@ -20,7 +20,7 @@ const App = (): JSX.Element => {
   
       const json = await response.json();
       
-      setHello(json.data.hello);
+      setHello(json.hello);
     }
     finally {
       setLoading(false);

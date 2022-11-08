@@ -39,7 +39,7 @@ namespace FunctionApp
             
             var response = new
             {
-                Hello = value
+                hello = value
             };
             var json = JsonConvert.SerializeObject(response);
 
