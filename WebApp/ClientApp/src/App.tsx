@@ -5,12 +5,7 @@ const App = (): JSX.Element => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [hello, setHello] = useState<string | null>(null);
 
-
-  const API_URL: string = 'https://azure-demo-func.azurewebsites.net/graphql';
-  const query: string = `
-    query greet {
-      hello
-    }`;
+  const API_URL: string = 'https://azure-demo-func.azurewebsites.net/api/HttpExample';
   
   const setResponse = async (): Promise<void> => {
     setLoading(true);
@@ -20,10 +15,7 @@ const App = (): JSX.Element => {
         method: 'POST',
         headers: {
           'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          query: query
-        })
+        }
       });
   
       const json = await response.json();
