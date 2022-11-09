@@ -1,27 +1,27 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-WebApp/ClientApp/node_modules/
-WebApp/ClientApp/.pnp
+FunctionApp/ClientApp/node_modules/
+FunctionApp/ClientApp/.pnp
 
-WebApp/ClientApp/.pnp.js
+FunctionApp/ClientApp/.pnp.js
 
 # testing
-WebApp/ClientApp/coverage
+FunctionApp/ClientApp/coverage
 
 # production
-WebApp/ClientApp/build
+FunctionApp/ClientApp/build
 
 # misc
-WebApp/ClientApp.DS_Store
-WebApp/ClientApp.env.local
-WebApp/ClientApp.env.development.local
-WebApp/ClientApp.env.test.local
-WebApp/ClientApp.env.production.local
+FunctionApp/ClientApp.DS_Store
+FunctionApp/ClientApp.env.local
+FunctionApp/ClientApp.env.development.local
+FunctionApp/ClientApp.env.test.local
+FunctionApp/ClientApp.env.production.local
 
-WebApp/ClientApp/npm-debug.log*
-WebApp/ClientApp/yarn-debug.log*
-WebApp/ClientApp/yarn-error.log*
+FunctionApp/ClientApp/npm-debug.log*
+FunctionApp/ClientApp/yarn-debug.log*
+FunctionApp/ClientApp/yarn-error.log*
 
 # .NET
 bin/
