@@ -11,6 +11,6 @@ namespace FunctionApp.Models
         public DateTimeOffset? Timestamp { get; set; }
         public ETag ETag { get; set; }
         public string Description { set; get; }
-        public bool IsComleted { set; get; }
+        public bool IsCompleted { set; get; }
     }
 }
