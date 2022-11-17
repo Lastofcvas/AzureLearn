@@ -1,4 +1,5 @@
-﻿using FunctionApp.Interfaces;
+﻿using FunctionApp.Helpers;
+using FunctionApp.Interfaces;
 using FunctionApp.Repositories;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,7 @@ namespace FunctionApp
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
+            builder.Services.AddSingleton<DataTypeHelper>();
             builder.Services.AddSingleton<ITodoRepository, AzureTodoRepository>();
         }
     }

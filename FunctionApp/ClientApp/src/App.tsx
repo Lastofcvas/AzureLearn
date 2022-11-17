@@ -1,8 +1,11 @@
-import Todo from './pages/Todo';
+import TodoPage from './pages/Todo';
+import 'antd/dist/antd.css'
 
 const App = (): JSX.Element => {
   return (
-    <Todo />
+    <div style={{padding: 20}}>
+      <TodoPage />
+    </div>
   );
 }
 

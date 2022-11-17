@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace FunctionApp.Models
 {
-    public class RowKeyPayloadModel
+    public class AddTodoModel
     {
-        public string id {get;set;}
+        public string Description { get; set; }
+        public bool IsCompleted { get; set; }
     }
 }

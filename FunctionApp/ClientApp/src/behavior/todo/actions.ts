@@ -33,7 +33,7 @@ export const todoSolved = (todoId: string) => ({type: TODO_SOLVED, payload: todo
 export const TODO_DELETED = 'TODO/DELETED' as const;
 export const todoDeleted = (todoId: string) => ({type: TODO_DELETED, payload: todoId});
 
-export type TodoAction = ReturnType<
+export type TodoCommandAction = ReturnType<
     | typeof addTodo 
     | typeof getAllTodos
     | typeof getTodo

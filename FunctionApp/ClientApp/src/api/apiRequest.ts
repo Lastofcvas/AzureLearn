@@ -1,5 +1,5 @@
 
-const apiRequest = async (URL: string, method: string, variables: unknown) => {
+const apiRequest = async (URL: string, method: string, variables: unknown = undefined) => {
     const response = await fetch(URL, {
         method: method,
         headers: {
