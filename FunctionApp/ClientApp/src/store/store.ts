@@ -3,8 +3,9 @@ import { applyMiddleware, createStore } from "redux";
 import rootEpic from "./rootEpic";
 import { createEpicMiddleware } from "redux-observable";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { StoreDependencies } from "./types";
 
-export default function configureStore (dependencies: any)  {
+export default function configureStore (dependencies: StoreDependencies)  {
     const epicMiddleware = createEpicMiddleware({ dependencies });
 
     const middlewares = [epicMiddleware];

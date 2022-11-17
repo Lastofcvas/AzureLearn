@@ -6,6 +6,7 @@ import { EMPTY } from 'rxjs';
 import { Todo } from '../todo/types';
 import { RootState } from "../../store/store";
 import { HotObservable } from "rxjs/internal/testing/HotObservable";
+import { StoreDependencies } from "../../store/types";
 
 describe('Todo epic', () => {
     const api = {
@@ -43,7 +44,7 @@ describe('Todo epic', () => {
             });
 
             const state$ = new StateObservable(EMPTY, { todo: [] } as RootState);
-            const output$ = epic(action$ as HotObservable<TodoCommandAction>, state$ as StateObservable<RootState>, { api });
+            const output$ = epic(action$ as HotObservable<TodoCommandAction>, state$ as StateObservable<RootState>, { api } as StoreDependencies);
 
             api.getAllTodosApiRequest.mockReturnValue(cold(marbles.api, { a: { todos: todos } }));
 
@@ -60,7 +61,7 @@ describe('Todo epic', () => {
             });
 
             const state$ = new StateObservable(EMPTY, { todo: [] } as RootState);
-            const output$ = epic(action$ as HotObservable<TodoCommandAction>, state$ as StateObservable<RootState>, { api });
+            const output$ = epic(action$ as HotObservable<TodoCommandAction>, state$ as StateObservable<RootState>, { api } as StoreDependencies);
 
             api.addTodoApiRequest.mockReturnValue(cold(marbles.api, { a: { todo: todo } }));
 
@@ -83,7 +84,7 @@ describe('Todo epic', () => {
             });
 
             const state$ = new StateObservable(EMPTY, { todo: [todo] } as RootState);
-            const output$ = epic(action$ as HotObservable<TodoCommandAction>, state$ as StateObservable<RootState>, { api });
+            const output$ = epic(action$ as HotObservable<TodoCommandAction>, state$ as StateObservable<RootState>, { api } as StoreDependencies);
 
             api.updateTodoApiRequest.mockReturnValue(cold(marbles.api, { a: { todo: updatedTodo } }));
 
@@ -102,7 +103,7 @@ describe('Todo epic', () => {
             });
 
             const state$ = new StateObservable(EMPTY, { todo: [todo] } as RootState);
-            const output$ = epic(action$ as HotObservable<TodoCommandAction>, state$ as StateObservable<RootState>, { api });
+            const output$ = epic(action$ as HotObservable<TodoCommandAction>, state$ as StateObservable<RootState>, { api } as StoreDependencies);
 
             api.solveTodoApiRequest.mockReturnValue(cold(marbles.api, { a: { id: id } }));
 
@@ -121,7 +122,7 @@ describe('Todo epic', () => {
             });
 
             const state$ = new StateObservable(EMPTY, { todo: [todo] } as RootState);
-            const output$ = epic(action$ as HotObservable<TodoCommandAction>, state$ as StateObservable<RootState>, { api });
+            const output$ = epic(action$ as HotObservable<TodoCommandAction>, state$ as StateObservable<RootState>, { api } as StoreDependencies);
 
             api.deleteTodoApiRequest.mockReturnValue(cold(marbles.api, { a: { id: id } }));
 
