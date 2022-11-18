@@ -1,7 +1,8 @@
 import todoApi from '../behavior/todo/requests';
 
-export default () => {
-    return {
-        ...todoApi
-    }
-}
+const createApi = () => ({
+  ...todoApi
+})
+
+export type Api = ReturnType<typeof createApi>;
+export default createApi;

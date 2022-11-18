@@ -2,9 +2,7 @@ import type { Action } from 'redux';
 import { StateObservable } from 'redux-observable';
 import type { Observable } from 'rxjs';
 import { RootState } from './store';
-import createApi from '../api/createApi';
-
-type Api = ReturnType<typeof createApi>;
+import { Api } from '../api/createApi';
 
 export type StoreDependencies = {
     api: Api

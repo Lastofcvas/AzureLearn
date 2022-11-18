@@ -5,7 +5,7 @@ import { createEpicMiddleware } from "redux-observable";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { StoreDependencies } from "./types";
 
-export default function configureStore (dependencies: StoreDependencies)  {
+const configureStore = (dependencies: StoreDependencies) => {
     const epicMiddleware = createEpicMiddleware({ dependencies });
 
     const middlewares = [epicMiddleware];
@@ -25,3 +25,4 @@ export default function configureStore (dependencies: StoreDependencies)  {
 }
 
 export type RootState = ReturnType<typeof rootReducer>;
+export default configureStore;

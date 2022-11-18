@@ -1,8 +1,7 @@
 import { Button } from "antd";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { TodoCommandAction, TODO_ADD } from "../../behavior/todo/actions";
-import { AddTodo } from "../../behavior/todo/types";
+import { addTodo } from "../../behavior/todo/actions";
 
 const TodoForm = (): JSX.Element => {
     const [description, setDescription] = useState<string>('');
@@ -11,15 +10,7 @@ const TodoForm = (): JSX.Element => {
 
     const onSubmit = (event: any) => {
         event.preventDefault();
-        dispatch(
-            {
-                type: TODO_ADD, 
-                payload: {
-                    description: description, 
-                    isCompleted: false
-                }
-            } as TodoCommandAction
-        )
+        dispatch(addTodo({description: description, isCompleted: false}));
         setDescription('');
     }
     

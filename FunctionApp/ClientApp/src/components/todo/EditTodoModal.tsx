@@ -22,8 +22,7 @@ const EditTodoModal = ({ isVisible, onCloseCallback, onOkCallback, payload, setP
             <Input
                 style={{marginTop: 30}}
                 value={payload?.description} 
-                onChange={event => 
-                    setPayload({...payload, description: event.target.value} as Todo)} 
+                onChange={event => setPayload({...payload!, description: event.target.value})} 
             />
         </Modal>
     )

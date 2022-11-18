@@ -1,9 +1,10 @@
 import configureStore from "./store";
 import createApi from "../api/createApi";
+import { StoreDependencies } from "./types";
 
 export const api = createApi();
 
-const dependencies = {
+const dependencies: StoreDependencies = {
     api
 } 
 

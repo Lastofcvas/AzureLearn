@@ -1,7 +1,7 @@
 import { Button, Table } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TodoCommandAction, TODO_DELETE, TODO_GETALL, TODO_SOLVE, TODO_UPDATE } from "../../behavior/todo/actions";
+import { deleteTodo, getAllTodos, solveTodo, updateTodo } from "../../behavior/todo/actions";
 import { Todo } from "../../behavior/todo/types";
 import { RootState } from "../../store/store";
 import EditTodoModal from "./EditTodoModal";
@@ -19,9 +19,7 @@ const TodoList = (): JSX.Element => {
     const [isVisibleEditModal, setVisibleEditModal] = useState<boolean>(false);
 
     useEffect(() => {
-        dispatch({
-            type: TODO_GETALL
-        });
+        dispatch(getAllTodos());
     }, [])
 
     const todos: Todo[] = useSelector((state: RootState) => state.todo);
@@ -34,17 +32,11 @@ const TodoList = (): JSX.Element => {
         })).sort((a, b) => Number(a.isCompleted === 'true') - Number(b.isCompleted === 'true'));
 
     const onSolveClick = (id: string) => {
-        dispatch({
-            type: TODO_SOLVE,
-            payload: id
-        } as TodoCommandAction);
+        dispatch(solveTodo(id));
     }
 
     const onDeleteClick = (id: string) => {
-        dispatch({
-            type: TODO_DELETE,
-            payload: id
-        } as TodoCommandAction)
+        dispatch(deleteTodo(id));
     } 
 
     const onEditClick = (record: TodoTableData) => {
@@ -52,7 +44,7 @@ const TodoList = (): JSX.Element => {
             id: record.key,
             description: record.description,
             isCompleted: record.isCompleted === 'true'
-        } as Todo)
+        })
         setVisibleEditModal(true);
     }
 
@@ -62,10 +54,7 @@ const TodoList = (): JSX.Element => {
     }
 
     const onOkModalCallback = () => {
-        dispatch({
-            type: TODO_UPDATE,
-            payload: editModalPayload
-        } as TodoCommandAction);
+        dispatch(updateTodo(editModalPayload!));
     }
 
     const RenderAcions = (record: TodoTableData): JSX.Element => {

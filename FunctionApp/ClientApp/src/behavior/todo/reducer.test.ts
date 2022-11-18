@@ -1,4 +1,4 @@
-import { TodoDocumentAction, TODO_ADDED, TODO_DELETED, TODO_LOADED, TODO_SOLVED, TODO_UPDATED } from "./actions";
+import { todoAdded, todoDeleted, todoLoaded, todoSolved, todoUpdated } from "./actions";
 import reducer, { initialState } from "./reducer";
 import { Todo, TodoState } from "./types";
 
@@ -8,7 +8,7 @@ describe('Todo reducer', () => {
     });
 
     it('should return the state with several items', () => {
-        const payload = [
+        const payload: Todo[] = [
             {
                 id: "12",
                 description: "first todo item",
@@ -24,81 +24,81 @@ describe('Todo reducer', () => {
                 description: "third todo item",
                 isCompleted: false
             }
-        ] as Todo[];
+        ]
         const expected = [...payload];
 
-        const result = reducer(initialState, {type: TODO_LOADED, payload: payload} as TodoDocumentAction) as TodoState;
+        const result: TodoState = reducer(initialState, todoLoaded(payload));
 
         expect(result).toEqual(expected);
     })
 
     it('should return a state with new item', () => {
-        const payload = {
+        const payload: Todo = {
             id: "unique-key",
             description: "test todo item",
             isCompleted: false
-        } as Todo;
-        const expected = [
+        }
+        const expected: Todo[] = [
             {
                 ...payload
             }
-        ] as Todo[];
+        ];
 
-        const result = reducer(initialState, {type: TODO_ADDED, payload: payload} as TodoDocumentAction) as TodoState;
+        const result: TodoState = reducer(initialState, todoAdded(payload));
         
         expect(result).toEqual(expected);
     })
 
     it('should return a state with updated item', () => {
-        const payload = {
+        const payload: Todo = {
             id: "unique-key",
             description: "todo item",
             isCompleted: false
-        } as Todo;
-        const updatedPayload = {
+        }
+        const updatedPayload: Todo = {
             id: "unique-key",
             description: "testing update",
             isCompleted: false
-        } as Todo;
-        const expected = [
+        }
+        const expected: Todo[] = [
             {
                 ...updatedPayload
             }
-         ] as Todo[];
+        ]
 
-        const result = reducer(initialState, { type: TODO_ADDED, payload: payload }) as TodoState;
-        const updatedResult = reducer(result, { type: TODO_UPDATED, payload: updatedPayload }) as TodoState;
+        const result: TodoState = reducer(initialState, todoAdded(payload));
+        const updatedResult: TodoState = reducer(result, todoUpdated(updatedPayload));
 
         expect(updatedResult).toEqual(expected);
     })
 
     it('should return a state with solved todo item', () => {
         const payload: string = "unique-key";
-        const todo = {
+        const todo: Todo = {
             id: "unique-key",
             description: "test todo item",
             isCompleted: false
-        } as Todo;
-        const expected = [
+        }
+        const expected: Todo[] = [
             {...todo, isCompleted: true}
-        ] as Todo[];
+        ]
 
-        const result = reducer(initialState, { type: TODO_ADDED, payload: todo }) as TodoState;
-        const updatedResult = reducer(result, { type: TODO_SOLVED, payload: payload }) as TodoState;
+        const result: TodoState = reducer(initialState, todoAdded(todo));
+        const updatedResult: TodoState = reducer(result, todoSolved(payload));
 
         expect(updatedResult).toEqual(expected);
     })
 
     it('should return a state without a todo item', () => {
         const payload: string = "unique-key";
-        const todo = {
+        const todo: Todo = {
             id: "unique-key",
             description: "test todo item",
             isCompleted: false
-        } as Todo;
+        }
 
-        const result = reducer(initialState, { type: TODO_ADDED, payload: todo }) as TodoState;
-        const updatedResult = reducer(result, { type: TODO_DELETED, payload: payload }) as TodoState;
+        const result: TodoState = reducer(initialState, todoAdded(todo));
+        const updatedResult: TodoState = reducer(result, todoDeleted(payload));
 
         expect(updatedResult).toEqual(initialState);
     })

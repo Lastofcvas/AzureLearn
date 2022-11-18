@@ -3,16 +3,12 @@ import { TodoState } from "./types";
 
 export const initialState: TodoState = [];
 
-export default (state: TodoState = initialState, action: TodoDocumentAction): TodoState => {
+const reducer = (state: TodoState = initialState, action: TodoDocumentAction): TodoState => {
     switch(action.type) {
         case TODO_LOADED:
-            return [
-                ...action.payload
-            ];
+            return action.payload;
         case TODO_ADDED:
-            return [
-                ...state, action.payload
-            ];
+            return [...state, action.payload];
         case TODO_UPDATED:
             const updatedIndex = state.findIndex(todo => todo.id === action.payload.id);
 
@@ -36,3 +32,5 @@ export default (state: TodoState = initialState, action: TodoDocumentAction): To
             return state;
     }
 }
+
+export default reducer;

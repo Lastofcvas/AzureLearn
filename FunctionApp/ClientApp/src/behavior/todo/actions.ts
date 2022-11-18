@@ -3,9 +3,6 @@ import { Todo, AddTodo } from "./types";
 export const TODO_GETALL = 'TODO/GETALL' as const;
 export const getAllTodos = () => ({type: TODO_GETALL});
 
-export const TODO_GET = 'TODO/GET' as const;
-export const getTodo = (todoId: string) => ({type: TODO_GET, payload: todoId});
-
 export const TODO_ADD = 'TODO/ADD' as const;
 export const addTodo = (todo: AddTodo) => ({type: TODO_ADD, payload: todo});
 
@@ -36,7 +33,6 @@ export const todoDeleted = (todoId: string) => ({type: TODO_DELETED, payload: to
 export type TodoCommandAction = ReturnType<
     | typeof addTodo 
     | typeof getAllTodos
-    | typeof getTodo
     | typeof addTodo
     | typeof updateTodo
     | typeof solveTodo
